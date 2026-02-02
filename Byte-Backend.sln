@@ -1,0 +1,29 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Byte-Backend", "Byte-Backend.csproj", "{7B0FD266-59D7-7C24-2A17-104531EB9B40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C861FF09-4D66-4F3A-BE71-168C5D97AC13}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B0FD266-59D7-7C24-2A17-104531EB9B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0FD266-59D7-7C24-2A17-104531EB9B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0FD266-59D7-7C24-2A17-104531EB9B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0FD266-59D7-7C24-2A17-104531EB9B40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F5DD28B-754F-4475-A47A-85211FE0400D}
+	EndGlobalSection
+EndGlobal

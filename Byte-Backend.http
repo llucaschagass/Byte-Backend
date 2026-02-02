@@ -1,0 +1,6 @@
+@Byte_Backend_HostAddress = http://localhost:5201
+
+GET {{Byte_Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
