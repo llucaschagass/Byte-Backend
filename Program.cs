@@ -12,9 +12,11 @@ builder.Services.AddDbContext<ByteDbContext>(options =>
 
 // Injeção de Dependência - Repositories
 builder.Services.AddScoped<ICargoRepository, CargoRepository>();
+builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 
 // Injeção de Dependência - Services
 builder.Services.AddScoped<CargoService>();
+builder.Services.AddScoped<PessoaService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
