@@ -1,6 +1,6 @@
 ﻿services:
   db-byte:
-    image: postgres:latest
+    image: postgres:16
     container_name: byte-db-postgres
     restart: always
     environment:
