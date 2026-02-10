@@ -15,12 +15,14 @@ builder.Services.AddScoped<ICargoRepository, CargoRepository>();
 builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
 // Injeção de Dependência - Services
 builder.Services.AddScoped<CargoService>();
 builder.Services.AddScoped<PessoaService>();
 builder.Services.AddScoped<FuncionarioService>();
 builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<ClienteService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
