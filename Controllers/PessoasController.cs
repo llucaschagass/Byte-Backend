@@ -1,12 +1,14 @@
 using Byte_Backend.DTOs;
 using Byte_Backend.Entidades;
 using Byte_Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Byte_Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class PessoasController : ControllerBase
 {
     private readonly PessoaService pessoaService;

@@ -14,5 +14,5 @@ public class CreateUsuarioDto
 
     [Required(ErrorMessage = "A senha é obrigatória")]
     [StringLength(100, MinimumLength = 6, ErrorMessage = "A senha deve ter entre 6 e 100 caracteres")]
-    public required string SenhaHash { get; set; }
+    public required string Senha { get; set; }
 }

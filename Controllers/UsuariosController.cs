@@ -1,12 +1,14 @@
 using Byte_Backend.DTOs;
 using Byte_Backend.Entidades;
 using Byte_Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Byte_Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class UsuariosController : ControllerBase
 {
     private readonly UsuarioService usuarioService;
@@ -53,21 +55,18 @@ public class UsuariosController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var usuario = new Usuario
-        {
-            FuncionarioId = dto.FuncionarioId,
-            Login = dto.Login,
-            SenhaHash = dto.SenhaHash
-        };
-
-        var (success, message) = await usuarioService.CreateUsuario(usuario);
+        var (success, message) = await usuarioService.CreateUsuarioComSenha(dto.Login, dto.FuncionarioId, dto.Senha);
 
         if (!success)
         {
             return BadRequest(new { message });
         }
 
-        return CreatedAtAction(nameof(GetById), new { id = usuario.Id }, usuario);
+        // Buscar o usuário criado para retornar
+        var usuarios = await usuarioService.GetAllUsuarios();
+        var usuarioCriado = usuarios.FirstOrDefault(u => u.Login == dto.Login);
+
+        return CreatedAtAction(nameof(GetById), new { id = usuarioCriado?.Id }, usuarioCriado);
     }
 
     /// <summary>
@@ -81,14 +80,7 @@ public class UsuariosController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var usuario = new Usuario
-        {
-            FuncionarioId = dto.FuncionarioId,
-            Login = dto.Login,
-            SenhaHash = dto.SenhaHash
-        };
-
-        var (success, message) = await usuarioService.UpdateUsuario(id, usuario);
+        var (success, message) = await usuarioService.UpdateUsuarioComSenha(id, dto.Login, dto.FuncionarioId, dto.Senha);
 
         if (!success)
         {
