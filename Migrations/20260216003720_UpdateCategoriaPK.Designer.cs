@@ -3,6 +3,7 @@ using System;
 using Byte_Backend.Dados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Byte_Backend.Migrations
 {
     [DbContext(typeof(ByteDbContext))]
-    partial class ByteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260216003720_UpdateCategoriaPK")]
+    partial class UpdateCategoriaPK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
