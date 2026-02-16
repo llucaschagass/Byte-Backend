@@ -8,4 +8,5 @@ public class Produto : EntidadeBase
     public string? Descricao { get; set; }
     public bool Ativo { get; set; } = true;
     public virtual Categoria? Categoria { get; set; }
+    public virtual ICollection<OpcaoProduto> Opcoes { get; set; } = new List<OpcaoProduto>();
 }
