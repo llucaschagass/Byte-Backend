@@ -68,7 +68,7 @@ public class ItemComandaService
         // Se foi informada uma opção de produto, verificar se existe e pertence ao produto
         if (item.OpcaoProdutoId.HasValue)
         {
-            var opcaoProduto = await opcaoProdutoRepository.GetOpcaoProdutoById(item.OpcaoProdutoId.Value);
+            var opcaoProduto = await opcaoProdutoRepository.GetOpcaoById(item.OpcaoProdutoId.Value);
             if (opcaoProduto == null)
             {
                 return (false, "Opção de produto não encontrada.");
@@ -127,7 +127,7 @@ public class ItemComandaService
         // Se foi informada uma opção de produto, verificar se existe e pertence ao produto
         if (item.OpcaoProdutoId.HasValue)
         {
-            var opcaoProduto = await opcaoProdutoRepository.GetOpcaoProdutoById(item.OpcaoProdutoId.Value);
+            var opcaoProduto = await opcaoProdutoRepository.GetOpcaoById(item.OpcaoProdutoId.Value);
             if (opcaoProduto == null)
             {
                 return (false, "Opção de produto não encontrada.");
