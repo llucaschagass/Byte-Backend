@@ -36,6 +36,7 @@ builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IOpcaoProdutoRepository, OpcaoProdutoRepository>();
 builder.Services.AddScoped<ICartaoComandaRepository, CartaoComandaRepository>();
 builder.Services.AddScoped<IComandaRepository, ComandaRepository>();
+builder.Services.AddScoped<IItemComandaRepository, ItemComandaRepository>();
 
 // Injeção de Dependência - Services
 builder.Services.AddScoped<CargoService>();
@@ -50,6 +51,7 @@ builder.Services.AddScoped<ProdutoService>();
 builder.Services.AddScoped<OpcaoProdutoService>();
 builder.Services.AddScoped<CartaoComandaService>();
 builder.Services.AddScoped<ComandaService>();
+builder.Services.AddScoped<ItemComandaService>();
 
 // Configuração de Autenticação JWT
 var jwtSecretKey = builder.Configuration["JwtSettings:SecretKey"] 
