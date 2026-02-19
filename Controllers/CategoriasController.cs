@@ -22,6 +22,7 @@ public class CategoriasController : ControllerBase
     /// Retorna todas as categorias cadastradas
     /// </summary>
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<Categoria>>> GetAll()
     {
         var categorias = await categoriaService.GetAllCategorias();
@@ -32,6 +33,7 @@ public class CategoriasController : ControllerBase
     /// Retorna uma categoria específica por ID
     /// </summary>
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<ActionResult<Categoria>> GetById(int id)
     {
         var categoria = await categoriaService.GetCategoriaById(id);

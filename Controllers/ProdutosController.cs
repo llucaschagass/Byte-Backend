@@ -22,6 +22,7 @@ public class ProdutosController : ControllerBase
     /// Retorna todos os produtos cadastrados
     /// </summary>
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
     {
         var produtos = await produtoService.GetAllProdutos();
@@ -32,6 +33,7 @@ public class ProdutosController : ControllerBase
     /// Retorna produtos filtrados por CategoriaId
     /// </summary>
     [HttpGet("categoria/{categoriaId}")]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<Produto>>> GetByCategoria(int categoriaId)
     {
         var produtos = await produtoService.GetProdutosByCategoria(categoriaId);
@@ -42,6 +44,7 @@ public class ProdutosController : ControllerBase
     /// Retorna um produto específico por ID
     /// </summary>
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<ActionResult<Produto>> GetById(int id)
     {
         var produto = await produtoService.GetProdutoById(id);

@@ -22,6 +22,7 @@ public class OpcoesProdutosController : ControllerBase
     /// Retorna todas as opções cadastradas
     /// </summary>
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<OpcaoProduto>>> GetAll()
     {
         var opcoes = await opcaoService.GetAllOpcoes();
@@ -32,6 +33,7 @@ public class OpcoesProdutosController : ControllerBase
     /// Retorna opções filtradas por ProdutoId
     /// </summary>
     [HttpGet("produto/{produtoId}")]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<OpcaoProduto>>> GetByProduto(int produtoId)
     {
         var opcoes = await opcaoService.GetOpcoesByProduto(produtoId);
@@ -42,6 +44,7 @@ public class OpcoesProdutosController : ControllerBase
     /// Retorna uma opção específica por ID
     /// </summary>
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<ActionResult<OpcaoProduto>> GetById(int id)
     {
         var opcao = await opcaoService.GetOpcaoById(id);

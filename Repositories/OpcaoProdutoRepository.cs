@@ -40,7 +40,7 @@ public class OpcaoProdutoRepository : IOpcaoProdutoRepository
 
     public async Task CreateOpcao(OpcaoProduto opcao)
     {
-        opcao.InseridoEm = DateTime.Now;
+        opcao.InseridoEm = DateTime.UtcNow;
         await context.OpcoesProdutos.AddAsync(opcao);
         await context.SaveChangesAsync();
     }

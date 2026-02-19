@@ -35,7 +35,7 @@ public class CategoriaRepository : ICategoriaRepository
 
     public async Task CreateCategoria(Categoria categoria)
     {
-        categoria.InseridoEm = DateTime.Now;
+        categoria.InseridoEm = DateTime.UtcNow;
         await context.Categorias.AddAsync(categoria);
         await context.SaveChangesAsync();
     }

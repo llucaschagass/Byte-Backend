@@ -48,7 +48,7 @@ public class ProdutoRepository : IProdutoRepository
 
     public async Task CreateProduto(Produto produto)
     {
-        produto.InseridoEm = DateTime.Now;
+        produto.InseridoEm = DateTime.UtcNow;
         await context.Produtos.AddAsync(produto);
         await context.SaveChangesAsync();
     }
