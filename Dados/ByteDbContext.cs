@@ -19,6 +19,7 @@ public class ByteDbContext : DbContext
     public DbSet<Comanda> Comandas { get; set; }
     public DbSet<ItemComanda> ItensComanda { get; set; }
     public DbSet<FilaCozinha> FilaCozinha { get; set; }
+    public DbSet<ProdutoImagem> ProdutosImagens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -73,6 +74,14 @@ public class ByteDbContext : DbContext
             .WithMany()
             .HasForeignKey(ic => ic.OpcaoProdutoId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // Configurações de ProdutoImagem
+        modelBuilder.Entity<ProdutoImagem>().Property(pi => pi.Conteudo).IsRequired();
+        modelBuilder.Entity<ProdutoImagem>()
+            .HasOne(pi => pi.Produto)
+            .WithMany()
+            .HasForeignKey(pi => pi.ProdutoId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Configurações de FilaCozinha
         modelBuilder.Entity<FilaCozinha>().Property(fk => fk.StatusPreparo).IsRequired();
