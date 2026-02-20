@@ -20,6 +20,7 @@ public class ByteDbContext : DbContext
     public DbSet<ItemComanda> ItensComanda { get; set; }
     public DbSet<FilaCozinha> FilaCozinha { get; set; }
     public DbSet<ProdutoImagem> ProdutosImagens { get; set; }
+    public DbSet<SolicitacaoAtendimento> SolicitacoesAtendimento { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -90,5 +91,12 @@ public class ByteDbContext : DbContext
             .WithOne(ic => ic.FilaCozinha)
             .HasForeignKey<FilaCozinha>(fk => fk.ItemComandaId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // Configurações de SolicitacaoAtendimento
+        modelBuilder.Entity<SolicitacaoAtendimento>()
+            .HasOne(s => s.AtendidoPor)
+            .WithMany()
+            .HasForeignKey(s => s.AtendidoPorId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
