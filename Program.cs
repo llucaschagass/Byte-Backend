@@ -13,12 +13,33 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ByteDbContext>(options =>
     options.UseNpgsql(connectionString));
 
+// CORS Config
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 // Injeção de Dependência - Repositories
 builder.Services.AddScoped<ICargoRepository, CargoRepository>();
 builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<IOpcaoProdutoRepository, OpcaoProdutoRepository>();
+builder.Services.AddScoped<ICartaoComandaRepository, CartaoComandaRepository>();
+builder.Services.AddScoped<IComandaRepository, ComandaRepository>();
+builder.Services.AddScoped<IItemComandaRepository, ItemComandaRepository>();
+builder.Services.AddScoped<IFilaCozinhaRepository, FilaCozinhaRepository>();
+builder.Services.AddScoped<IProdutoImagemRepository, ProdutoImagemRepository>();
+builder.Services.AddScoped<ISolicitacaoAtendimentoRepository, SolicitacaoAtendimentoRepository>();
 
 // Injeção de Dependência - Services
 builder.Services.AddScoped<CargoService>();
@@ -28,6 +49,15 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<ClienteService>();
+builder.Services.AddScoped<CategoriaService>();
+builder.Services.AddScoped<ProdutoService>();
+builder.Services.AddScoped<OpcaoProdutoService>();
+builder.Services.AddScoped<CartaoComandaService>();
+builder.Services.AddScoped<ComandaService>();
+builder.Services.AddScoped<ItemComandaService>();
+builder.Services.AddScoped<FilaCozinhaService>();
+builder.Services.AddScoped<ProdutoImagemService>();
+builder.Services.AddScoped<SolicitacaoAtendimentoService>();
 
 // Configuração de Autenticação JWT
 var jwtSecretKey = builder.Configuration["JwtSettings:SecretKey"] 
@@ -87,7 +117,12 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger";
 });
 
-app.UseHttpsRedirection();
+app.UseCors("AllowSpecificOrigin");
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthentication();
 app.UseAuthorization();
