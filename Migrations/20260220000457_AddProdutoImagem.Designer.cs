@@ -3,6 +3,7 @@ using System;
 using Byte_Backend.Dados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Byte_Backend.Migrations
 {
     [DbContext(typeof(ByteDbContext))]
-    partial class ByteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260220000457_AddProdutoImagem")]
+    partial class AddProdutoImagem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -380,37 +383,6 @@ namespace Byte_Backend.Migrations
                     b.ToTable("ProdutosImagens");
                 });
 
-            modelBuilder.Entity("Byte_Backend.Entidades.SolicitacaoAtendimento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Atendida")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("AtendidoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("AtendidoPorId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("InseridoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("NumeroMesa")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AtendidoPorId");
-
-                    b.ToTable("SolicitacoesAtendimento");
-                });
-
             modelBuilder.Entity("Byte_Backend.Entidades.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -560,16 +532,6 @@ namespace Byte_Backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Produto");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.SolicitacaoAtendimento", b =>
-                {
-                    b.HasOne("Byte_Backend.Entidades.Usuario", "AtendidoPor")
-                        .WithMany()
-                        .HasForeignKey("AtendidoPorId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("AtendidoPor");
                 });
 
             modelBuilder.Entity("Byte_Backend.Entidades.Usuario", b =>

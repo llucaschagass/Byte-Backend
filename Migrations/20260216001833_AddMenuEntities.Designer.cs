@@ -3,6 +3,7 @@ using System;
 using Byte_Backend.Dados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Byte_Backend.Migrations
 {
     [DbContext(typeof(ByteDbContext))]
-    partial class ByteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260216001833_AddMenuEntities")]
+    partial class AddMenuEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,42 +48,13 @@ namespace Byte_Backend.Migrations
                     b.ToTable("Cargos");
                 });
 
-            modelBuilder.Entity("Byte_Backend.Entidades.CartaoComanda", b =>
+            modelBuilder.Entity("Byte_Backend.Entidades.Categoria", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CodigoRfid")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("InseridoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("NumeroCartao")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CodigoRfid")
-                        .IsUnique();
-
-                    b.HasIndex("NumeroCartao")
-                        .IsUnique();
-
-                    b.ToTable("CartoesComanda");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.Categoria", b =>
-                {
-                    b.Property<int>("CategoriaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CategoriaId"));
 
                     b.Property<string>("Descricao")
                         .HasColumnType("text");
@@ -92,7 +66,7 @@ namespace Byte_Backend.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("CategoriaId");
+                    b.HasKey("Id");
 
                     b.ToTable("Categorias");
                 });
@@ -119,71 +93,6 @@ namespace Byte_Backend.Migrations
                     b.HasIndex("PessoaId");
 
                     b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.Comanda", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AbertaEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("CartaoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("FechadaEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("InseridoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartaoId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.ToTable("Comandas");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.FilaCozinha", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("InseridoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("ItemComandaId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("StatusPreparo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UltimaAtualizacao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemComandaId")
-                        .IsUnique();
-
-                    b.ToTable("FilaCozinha");
                 });
 
             modelBuilder.Entity("Byte_Backend.Entidades.Funcionario", b =>
@@ -216,47 +125,6 @@ namespace Byte_Backend.Migrations
                     b.HasIndex("PessoaId");
 
                     b.ToTable("Funcionarios");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.ItemComanda", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ComandaId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("InseridoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Observacao")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("OpcaoProdutoId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("PrecoUnitario")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("numeric(18,2)");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ComandaId");
-
-                    b.HasIndex("OpcaoProdutoId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("ItensComanda");
                 });
 
             modelBuilder.Entity("Byte_Backend.Entidades.OpcaoProduto", b =>
@@ -355,62 +223,6 @@ namespace Byte_Backend.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("Byte_Backend.Entidades.ProdutoImagem", b =>
-                {
-                    b.Property<int>("ProdutoImagemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ProdutoImagemId"));
-
-                    b.Property<string>("Conteudo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("InseridoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ProdutoImagemId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("ProdutosImagens");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.SolicitacaoAtendimento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Atendida")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("AtendidoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int?>("AtendidoPorId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("InseridoEm")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("NumeroMesa")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AtendidoPorId");
-
-                    b.ToTable("SolicitacoesAtendimento");
-                });
-
             modelBuilder.Entity("Byte_Backend.Entidades.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -454,36 +266,6 @@ namespace Byte_Backend.Migrations
                     b.Navigation("Pessoa");
                 });
 
-            modelBuilder.Entity("Byte_Backend.Entidades.Comanda", b =>
-                {
-                    b.HasOne("Byte_Backend.Entidades.CartaoComanda", "Cartao")
-                        .WithMany("Comandas")
-                        .HasForeignKey("CartaoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Byte_Backend.Entidades.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Cartao");
-
-                    b.Navigation("Cliente");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.FilaCozinha", b =>
-                {
-                    b.HasOne("Byte_Backend.Entidades.ItemComanda", "ItemComanda")
-                        .WithOne("FilaCozinha")
-                        .HasForeignKey("Byte_Backend.Entidades.FilaCozinha", "ItemComandaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ItemComanda");
-                });
-
             modelBuilder.Entity("Byte_Backend.Entidades.Funcionario", b =>
                 {
                     b.HasOne("Byte_Backend.Entidades.Cargo", "Cargo")
@@ -503,36 +285,10 @@ namespace Byte_Backend.Migrations
                     b.Navigation("Pessoa");
                 });
 
-            modelBuilder.Entity("Byte_Backend.Entidades.ItemComanda", b =>
-                {
-                    b.HasOne("Byte_Backend.Entidades.Comanda", "Comanda")
-                        .WithMany("Itens")
-                        .HasForeignKey("ComandaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Byte_Backend.Entidades.OpcaoProduto", "OpcaoProduto")
-                        .WithMany()
-                        .HasForeignKey("OpcaoProdutoId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Byte_Backend.Entidades.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Comanda");
-
-                    b.Navigation("OpcaoProduto");
-
-                    b.Navigation("Produto");
-                });
-
             modelBuilder.Entity("Byte_Backend.Entidades.OpcaoProduto", b =>
                 {
                     b.HasOne("Byte_Backend.Entidades.Produto", "Produto")
-                        .WithMany("Opcoes")
+                        .WithMany()
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -551,27 +307,6 @@ namespace Byte_Backend.Migrations
                     b.Navigation("Categoria");
                 });
 
-            modelBuilder.Entity("Byte_Backend.Entidades.ProdutoImagem", b =>
-                {
-                    b.HasOne("Byte_Backend.Entidades.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Produto");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.SolicitacaoAtendimento", b =>
-                {
-                    b.HasOne("Byte_Backend.Entidades.Usuario", "AtendidoPor")
-                        .WithMany()
-                        .HasForeignKey("AtendidoPorId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("AtendidoPor");
-                });
-
             modelBuilder.Entity("Byte_Backend.Entidades.Usuario", b =>
                 {
                     b.HasOne("Byte_Backend.Entidades.Funcionario", "Funcionario")
@@ -581,26 +316,6 @@ namespace Byte_Backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Funcionario");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.CartaoComanda", b =>
-                {
-                    b.Navigation("Comandas");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.Comanda", b =>
-                {
-                    b.Navigation("Itens");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.ItemComanda", b =>
-                {
-                    b.Navigation("FilaCozinha");
-                });
-
-            modelBuilder.Entity("Byte_Backend.Entidades.Produto", b =>
-                {
-                    b.Navigation("Opcoes");
                 });
 #pragma warning restore 612, 618
         }
