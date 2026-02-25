@@ -1,0 +1,20 @@
+namespace Byte_Backend.Entidades;
+
+public enum PermissaoPrincipal
+{
+    G, // Garçom
+    C, // Cozinha
+    P  // Gerência
+}
+
+public class UsuarioPermissao : EntidadeBase
+{
+    public int UsuarioId { get; set; }
+    public virtual Usuario? Usuario { get; set; }
+
+    public bool Garcom { get; set; }
+    public bool Cozinha { get; set; }
+    public bool Gerencia { get; set; }
+
+    public PermissaoPrincipal Principal { get; set; }
+}

@@ -21,6 +21,7 @@ public class ByteDbContext : DbContext
     public DbSet<FilaCozinha> FilaCozinha { get; set; }
     public DbSet<ProdutoImagem> ProdutosImagens { get; set; }
     public DbSet<SolicitacaoAtendimento> SolicitacoesAtendimento { get; set; }
+    public DbSet<UsuarioPermissao> UsuariosPermissoes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -98,5 +99,12 @@ public class ByteDbContext : DbContext
             .WithMany()
             .HasForeignKey(s => s.AtendidoPorId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // Configurações de UsuarioPermissao
+        modelBuilder.Entity<UsuarioPermissao>()
+            .HasOne(up => up.Usuario)
+            .WithMany()
+            .HasForeignKey(up => up.UsuarioId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
