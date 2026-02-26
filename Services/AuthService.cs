@@ -61,6 +61,7 @@ public class AuthService
         {
             Token = token,
             Login = usuario.Login,
+            UsuarioId = usuario.Id,
             NomeFuncionario = usuario.Funcionario?.Pessoa?.Nome ?? "Usuário",
             Cargo = usuario.Funcionario?.Cargo?.Nome ?? "Usuario",
             ExpiresAt = expiresAt
