@@ -106,5 +106,10 @@ public class ByteDbContext : DbContext
             .WithMany()
             .HasForeignKey(up => up.UsuarioId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<UsuarioPermissao>()
+            .Property(up => up.Principal)
+            .HasConversion<string>()
+            .HasMaxLength(1);
     }
 }

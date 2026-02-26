@@ -1,5 +1,8 @@
+using System.Text.Json.Serialization;
+
 namespace Byte_Backend.Entidades;
 
+[JsonConverter(typeof(JsonStringEnumConverter<PermissaoPrincipal>))]
 public enum PermissaoPrincipal
 {
     G, // Garçom
