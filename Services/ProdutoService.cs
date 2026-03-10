@@ -79,6 +79,8 @@ public class ProdutoService
         produtoExistente.Preco = produto.Preco;
         produtoExistente.Descricao = produto.Descricao;
         produtoExistente.Ativo = produto.Ativo;
+        produtoExistente.ModificadoEm = DateTime.Now;
+        produtoExistente.ModificadoPor = produto.ModificadoPor;
 
         await produtoRepository.UpdateProduto(produtoExistente);
         return (true, "Produto atualizado com sucesso.");

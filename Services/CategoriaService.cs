@@ -51,6 +51,8 @@ public class CategoriaService
 
         categoriaExistente.Nome = categoria.Nome;
         categoriaExistente.Descricao = categoria.Descricao;
+        categoriaExistente.ModificadoEm = DateTime.Now;
+        categoriaExistente.ModificadoPor = categoria.ModificadoPor;
 
         await categoriaRepository.UpdateCategoria(categoriaExistente);
         return (true, "Categoria atualizada com sucesso.");

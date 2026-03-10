@@ -82,6 +82,8 @@ public class FilaCozinhaService
 
         filaCozinhaExistente.ItemComandaId = filaCozinha.ItemComandaId;
         filaCozinhaExistente.StatusPreparo = filaCozinha.StatusPreparo;
+        filaCozinhaExistente.ModificadoEm = DateTime.Now;
+        filaCozinhaExistente.ModificadoPor = filaCozinha.ModificadoPor;
 
         await filaCozinhaRepository.UpdateFilaCozinha(filaCozinhaExistente);
         return (true, "Item da fila da cozinha atualizado com sucesso.");
@@ -116,6 +118,7 @@ public class FilaCozinhaService
         }
 
         filaCozinha.StatusPreparo = novoStatus;
+        filaCozinha.ModificadoEm = DateTime.Now;
         await filaCozinhaRepository.UpdateFilaCozinha(filaCozinha);
         
         return (true, $"Status atualizado para '{novoStatus}' com sucesso.");

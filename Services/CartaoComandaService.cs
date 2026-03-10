@@ -66,6 +66,8 @@ public class CartaoComandaService
 
         cartaoExistente.NumeroCartao = cartao.NumeroCartao;
         cartaoExistente.CodigoRfid = cartao.CodigoRfid;
+        cartaoExistente.ModificadoEm = DateTime.Now;
+        cartaoExistente.ModificadoPor = cartao.ModificadoPor;
 
         await cartaoComandaRepository.UpdateCartaoComanda(cartaoExistente);
         return (true, "Cartão comanda atualizado com sucesso.");

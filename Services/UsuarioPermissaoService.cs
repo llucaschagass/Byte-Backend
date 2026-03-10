@@ -74,6 +74,7 @@ public class UsuarioPermissaoService
         permissao.Cozinha = cozinha;
         permissao.Gerencia = gerencia;
         permissao.Principal = principal;
+        permissao.ModificadoEm = DateTime.Now;
 
         await usuarioPermissaoRepository.Update(permissao);
         return (true, "Permissões atualizadas com sucesso.");

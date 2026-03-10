@@ -52,6 +52,8 @@ public class CargoService
 
         cargoExistente.Nome = cargo.Nome;
         cargoExistente.Descricao = cargo.Descricao;
+        cargoExistente.ModificadoEm = DateTime.Now;
+        cargoExistente.ModificadoPor = cargo.ModificadoPor;
 
         await cargoRepository.UpdateCargo(cargoExistente);
         return (true, "Cargo atualizado com sucesso.");

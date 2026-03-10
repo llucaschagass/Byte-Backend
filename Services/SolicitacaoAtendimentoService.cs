@@ -70,6 +70,7 @@ public class SolicitacaoAtendimentoService
         solicitacao.Atendida = "S";
         solicitacao.AtendidoPorId = usuarioId;
         solicitacao.AtendidoEm = DateTime.UtcNow;
+        solicitacao.ModificadoEm = DateTime.Now;
 
         await solicitacaoRepository.Update(solicitacao);
         return (true, "Atendimento registrado com sucesso.");

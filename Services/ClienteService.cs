@@ -68,6 +68,8 @@ public class ClienteService
 
         clienteExistente.PessoaId = cliente.PessoaId;
         clienteExistente.PontosFidelidade = cliente.PontosFidelidade;
+        clienteExistente.ModificadoEm = DateTime.Now;
+        clienteExistente.ModificadoPor = cliente.ModificadoPor;
 
         await clienteRepository.UpdateCliente(clienteExistente);
         return (true, "Cliente atualizado com sucesso.");

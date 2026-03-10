@@ -133,6 +133,8 @@ public class ComandaService
         comandaExistente.Status = comanda.Status;
         comandaExistente.AbertaEm = comanda.AbertaEm;
         comandaExistente.FechadaEm = comanda.FechadaEm;
+        comandaExistente.ModificadoEm = DateTime.Now;
+        comandaExistente.ModificadoPor = comanda.ModificadoPor;
 
         await comandaRepository.UpdateComanda(comandaExistente);
         return (true, "Comanda atualizada com sucesso.");
@@ -165,6 +167,7 @@ public class ComandaService
 
         comanda.Status = "Fechada";
         comanda.FechadaEm = DateTime.UtcNow;
+        comanda.ModificadoEm = DateTime.Now;
 
         await comandaRepository.UpdateComanda(comanda);
         return (true, "Comanda fechada com sucesso.");

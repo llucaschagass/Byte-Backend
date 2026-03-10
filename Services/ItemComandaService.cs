@@ -157,6 +157,8 @@ public class ItemComandaService
         itemExistente.Quantidade = item.Quantidade;
         itemExistente.PrecoUnitario = item.PrecoUnitario;
         itemExistente.Observacao = item.Observacao;
+        itemExistente.ModificadoEm = DateTime.Now;
+        itemExistente.ModificadoPor = item.ModificadoPor;
 
         await itemComandaRepository.UpdateItemComanda(itemExistente);
         return (true, "Item da comanda atualizado com sucesso.");

@@ -74,6 +74,8 @@ public class FuncionarioService
         funcionarioExistente.PessoaId = funcionario.PessoaId;
         funcionarioExistente.CargoId = funcionario.CargoId;
         funcionarioExistente.Ativo = funcionario.Ativo;
+        funcionarioExistente.ModificadoEm = DateTime.Now;
+        funcionarioExistente.ModificadoPor = funcionario.ModificadoPor;
 
         await funcionarioRepository.UpdateFuncionario(funcionarioExistente);
         return (true, "Funcionário atualizado com sucesso.");

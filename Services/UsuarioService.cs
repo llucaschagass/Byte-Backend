@@ -86,6 +86,8 @@ public class UsuarioService
         usuarioExistente.FuncionarioId = usuario.FuncionarioId;
         usuarioExistente.Login = usuario.Login;
         usuarioExistente.SenhaHash = usuario.SenhaHash;
+        usuarioExistente.ModificadoEm = DateTime.Now;
+        usuarioExistente.ModificadoPor = usuario.ModificadoPor;
 
         await usuarioRepository.UpdateUsuario(usuarioExistente);
         return (true, "Usuário atualizado com sucesso.");
@@ -115,6 +117,7 @@ public class UsuarioService
 
         usuarioExistente.FuncionarioId = funcionarioId;
         usuarioExistente.Login = login;
+        usuarioExistente.ModificadoEm = DateTime.Now;
         
         // Só atualiza a senha se uma nova foi fornecida
         if (!string.IsNullOrEmpty(senha))

@@ -12,4 +12,7 @@ public class Categoria
     public string? Descricao { get; set; }
     
     public DateTime InseridoEm { get; set; } = DateTime.Now;
+    
+    public DateTime? ModificadoEm { get; set; }
+    public string? ModificadoPor { get; set; }
 }

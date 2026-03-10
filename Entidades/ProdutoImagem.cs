@@ -13,5 +13,8 @@ public class ProdutoImagem
 
     public DateTime InseridoEm { get; set; } = DateTime.UtcNow;
 
+    public DateTime? ModificadoEm { get; set; }
+    public string? ModificadoPor { get; set; }
+
     public virtual Produto? Produto { get; set; }
 }

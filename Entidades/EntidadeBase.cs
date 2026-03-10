@@ -9,4 +9,7 @@ public abstract class EntidadeBase
     
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public DateTime InseridoEm { get; set; } = DateTime.Now;
+    
+    public DateTime? ModificadoEm { get; set; }
+    public string? ModificadoPor { get; set; }
 }

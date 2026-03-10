@@ -63,6 +63,8 @@ public class OpcaoProdutoService
         opcaoExistente.ProdutoId = opcao.ProdutoId;
         opcaoExistente.Nome = opcao.Nome;
         opcaoExistente.PrecoAdicional = opcao.PrecoAdicional;
+        opcaoExistente.ModificadoEm = DateTime.Now;
+        opcaoExistente.ModificadoPor = opcao.ModificadoPor;
 
         await opcaoRepository.UpdateOpcao(opcaoExistente);
         return (true, "Opção atualizada com sucesso.");

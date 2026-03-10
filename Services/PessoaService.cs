@@ -60,6 +60,8 @@ public class PessoaService
         pessoaExistente.Email = pessoa.Email;
         pessoaExistente.CPF = pessoa.CPF;
         pessoaExistente.Telefone = pessoa.Telefone;
+        pessoaExistente.ModificadoEm = DateTime.Now;
+        pessoaExistente.ModificadoPor = pessoa.ModificadoPor;
 
         await pessoaRepository.UpdatePessoa(pessoaExistente);
         return (true, "Pessoa atualizada com sucesso.");
