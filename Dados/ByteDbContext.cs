@@ -22,6 +22,8 @@ public class ByteDbContext : DbContext
     public DbSet<ProdutoImagem> ProdutosImagens { get; set; }
     public DbSet<SolicitacaoAtendimento> SolicitacoesAtendimento { get; set; }
     public DbSet<UsuarioPermissao> UsuariosPermissoes { get; set; }
+    public DbSet<Receita> Receitas { get; set; }
+    public DbSet<IngredienteReceita> IngredientesReceitas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -111,5 +113,22 @@ public class ByteDbContext : DbContext
             .Property(up => up.Principal)
             .HasConversion<string>()
             .HasMaxLength(1);
+
+        // Configurações de Receita
+        modelBuilder.Entity<Receita>().Property(r => r.Descricao).IsRequired();
+        modelBuilder.Entity<Receita>()
+            .HasOne(r => r.Produto)
+            .WithOne(p => p.Receita)
+            .HasForeignKey<Receita>(r => r.ProdutoId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Configurações de IngredienteReceita
+        modelBuilder.Entity<IngredienteReceita>().Property(i => i.Nome).IsRequired();
+        modelBuilder.Entity<IngredienteReceita>().Property(i => i.Quantidade).IsRequired();
+        modelBuilder.Entity<IngredienteReceita>()
+            .HasOne(i => i.Receita)
+            .WithMany(r => r.Ingredientes)
+            .HasForeignKey(i => i.ReceitaId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
