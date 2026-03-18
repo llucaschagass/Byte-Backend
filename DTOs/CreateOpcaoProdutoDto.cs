@@ -11,7 +11,6 @@ public class CreateOpcaoProdutoDto
     [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres")]
     public required string Nome { get; set; }
 
-    [Required(ErrorMessage = "O preço adicional é obrigatório")]
     [Range(0, double.MaxValue, ErrorMessage = "O preço adicional não pode ser negativo")]
-    public decimal PrecoAdicional { get; set; }
+    public decimal? PrecoAdicional { get; set; }
 }
